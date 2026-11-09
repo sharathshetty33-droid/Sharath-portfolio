@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Sharath Shetty — BCA graduate and aspiring Cloud Support Engineer. Explore skills, projects and contact details.">
+  <title>Sharath Shetty | Cloud & IT Enthusiast</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --surface: #121a2d;
+      --surface-2: #18233a;
+      --text: #eef3ff;
+      --muted: #a8b4ca;
+      --accent: #65d6c4;
+      --accent-2: #7da7ff;
+      --line: rgba(173, 195, 230, .16);
+      --shadow: 0 22px 60px rgba(0,0,0,.25);
+      --radius: 20px;
+      color-scheme: dark;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body {
+      margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 85% 5%, rgba(69,111,190,.16), transparent 28rem), var(--bg);
+      color: var(--text); line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px);
+      background: rgba(11,16,32,.82); border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-size: 1.08rem; font-weight: 800; letter-spacing: .02em; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .92rem; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+    .menu-toggle { display: none; border: 1px solid var(--line); color: var(--text); background: var(--surface); border-radius: 10px; padding: 9px 12px; cursor: pointer; }
+    .hero { padding: 104px 0 88px; min-height: 610px; display: grid; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 1.35fr .85fr; gap: 58px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); font-size: .82rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: var(--accent); }
+    h1 { margin: 18px 0 14px; font-size: clamp(2.8rem, 6vw, 5.3rem); line-height: 1.04; letter-spacing: -.055em; }
+    h1 span { color: var(--accent); }
+    .hero h2 { margin: 0 0 18px; color: #d2ddf0; font-size: clamp(1.15rem, 2.4vw, 1.55rem); font-weight: 550; }
+    .lead { max-width: 660px; color: var(--muted); font-size: 1.06rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 10px; padding: 12px 19px; border-radius: 12px; border: 1px solid transparent; font-weight: 750; font-size: .94rem; transition: transform .2s, background .2s, border-color .2s; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--accent); color: #07131b; }
+    .btn-secondary { border-color: var(--line); background: rgba(255,255,255,.025); color: var(--text); }
+    .hero-card { padding: 30px; border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(145deg, rgba(101,214,196,.12), rgba(125,167,255,.08)), var(--surface); box-shadow: var(--shadow); }
+    .avatar { width: 92px; height: 92px; border-radius: 24px; display: grid; place-items: center; font-size: 2.1rem; font-weight: 850; color: #07131b; background: linear-gradient(135deg, var(--accent), var(--accent-2)); margin-bottom: 22px; }
+    .hero-card h3 { margin: 0 0 5px; font-size: 1.35rem; }
+    .hero-card p { margin: 0; color: var(--muted); }
+    .quick-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+    .fact { padding: 13px; border-radius: 13px; background: rgba(255,255,255,.045); }
+    .fact strong { display: block; font-size: .92rem; }
+    .fact small { color: var(--muted); }
+    section { padding: 78px 0; }
+    .section-head { max-width: 700px; margin-bottom: 34px; }
+    .section-kicker { color: var(--accent); text-transform: uppercase; letter-spacing: .14em; font-weight: 800; font-size: .76rem; }
+    h2.section-title { margin: 7px 0 10px; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; line-height: 1.15; }
+    .section-desc { color: var(--muted); margin: 0; }
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; }
+    .panel, .skill-card, .project-card, .contact-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+    .panel { padding: 28px; }
+    .panel p { color: var(--muted); margin-top: 0; }
+    .education-line { padding: 15px 0; border-top: 1px solid var(--line); }
+    .education-line strong { display: block; }
+    .education-line span { color: var(--muted); font-size: .92rem; }
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+    .skill-card { padding: 21px; }
+    .skill-card h3 { margin: 0 0 12px; font-size: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag { border: 1px solid rgba(101,214,196,.22); background: rgba(101,214,196,.07); color: #c9f7ee; padding: 6px 10px; border-radius: 999px; font-size: .8rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project-card { padding: 24px; display: flex; flex-direction: column; min-height: 300px; transition: transform .2s, border-color .2s; }
+    .project-card:hover { transform: translateY(-5px); border-color: rgba(101,214,196,.45); }
+    .project-icon { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; background: rgba(125,167,255,.12); color: var(--accent-2); font-size: 1.3rem; }
+    .project-card h3 { margin: 18px 0 8px; font-size: 1.15rem; }
+    .project-card p { color: var(--muted); margin: 0 0 18px; font-size: .94rem; }
+    .project-card .tags { margin-top: auto; }
+    .project-note { color: var(--muted); font-size: .84rem; margin-top: 18px; }
+    .contact-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 20px; }
+    .contact-card { padding: 27px; }
+    .contact-card p { color: var(--muted); }
+    .contact-list { display: grid; gap: 14px; margin-top: 22px; }
+    .contact-list a, .contact-list div { color: var(--muted); overflow-wrap: anywhere; }
+    .contact-list strong { color: var(--text); display: block; font-size: .82rem; margin-bottom: 2px; }
+    form { display: grid; gap: 13px; }
+    label { font-size: .86rem; color: #d7e1f2; font-weight: 650; }
+    input, textarea { width: 100%; margin-top: 6px; padding: 13px 14px; border-radius: 11px; border: 1px solid var(--line); background: #0d1527; color: var(--text); font: inherit; outline: none; }
+    input:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(101,214,196,.1); }
+    textarea { min-height: 125px; resize: vertical; }
+    .form-help { font-size: .82rem; color: var(--muted); margin: 0; }
+    footer { padding: 26px 0 36px; border-top: 1px solid var(--line); color: var(--muted); font-size: .88rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .top-link { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    @media (max-width: 850px) {
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 75px; }
+      .hero-card { max-width: 540px; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 30px, 1120px); }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 73px; left: 0; right: 0; padding: 18px 22px 22px; background: #10182a; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; }
+      .nav-links.open { display: flex; }
+      .hero { min-height: auto; padding: 66px 0; }
+      section { padding: 60px 0; }
+      .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+      .hero-card, .panel, .contact-card { padding: 22px; }
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">SHARATH<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">BCA Graduate · Bengaluru, India</div>
+          <h1>Hello, I'm<br><span>Sharath Shetty.</span></h1>
+          <h2>Aspiring Cloud Support Engineer</h2>
+          <p class="lead">I’m a BCA graduate interested in cloud computing, Linux, networking and IT infrastructure. I enjoy learning by building practical projects, troubleshooting issues and exploring how reliable systems are deployed and maintained.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-secondary" href="#contact">Contact me</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Profile summary">
+          <div class="avatar" aria-hidden="true">SS</div>
+          <h3>Cloud & IT Enthusiast</h3>
+          <p>Focused on building strong foundations in cloud platforms and technical support.</p>
+          <div class="quick-facts">
+            <div class="fact"><strong>Education</strong><small>BCA · 2026</small></div>
+            <div class="fact"><strong>Based in</strong><small>Bengaluru, India</small></div>
+            <div class="fact"><strong>Learning</strong><small>AWS & Linux</small></div>
+            <div class="fact"><strong>Interests</strong><small>Cloud · Networking</small></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">A little about me</div>
+          <h2 class="section-title">Building my foundation in technology.</h2>
+          <p class="section-desc">I’m developing practical skills in IT operations and cloud technologies while strengthening my understanding of core computer science concepts.</p>
+        </div>
+        <div class="about-grid">
+          <article class="panel">
+            <h3>My approach</h3>
+            <p>I believe in learning through practice: setting up environments, writing queries, understanding networks, working with Linux commands and documenting what I learn. I’m looking for an entry-level opportunity where I can contribute, learn from experienced teams and grow in cloud or IT support.</p>
+            <p>My current learning priorities include AWS fundamentals, Linux administration, SQL, networking concepts and troubleshooting.</p>
+          </article>
+          <article class="panel">
+            <h3>Education</h3>
+            <div class="education-line">
+              <strong>Bachelor of Computer Applications (BCA)</strong>
+              <span>Dr. B.B. Hegde First Grade College, Kundapura · Mangalore University</span><br>
+              <span>2023–2026 · CGPA: 7.76/10</span>
+            </div>
+            <div class="education-line">
+              <strong>Pre-University Course — Commerce</strong>
+              <span>Sri Mookambika Temple Independent P.U. College, Kollur · 2021–2023</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Technical toolkit</div>
+          <h2 class="section-title">Skills I'm developing and applying.</h2>
+          <p class="section-desc">A practical mix of programming, databases, operating systems and cloud fundamentals.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-card"><h3>Cloud & Infrastructure</h3><div class="tags"><span class="tag">AWS fundamentals</span><span class="tag">Amazon S3</span><span class="tag">IAM concepts</span><span class="tag">EC2 fundamentals</span></div></article>
+          <article class="skill-card"><h3>Operating Systems</h3><div class="tags"><span class="tag">Linux</span><span class="tag">Rocky Linux</span><span class="tag">Windows</span><span class="tag">CLI basics</span></div></article>
+          <article class="skill-card"><h3>Networking</h3><div class="tags"><span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">DHCP</span><span class="tag">OSI model</span></div></article>
+          <article class="skill-card"><h3>Programming</h3><div class="tags"><span class="tag">Python</span><span class="tag">C</span><span class="tag">Java</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></article>
+          <article class="skill-card"><h3>Databases & Tools</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span></div></article>
+          <article class="skill-card"><h3>Core Concepts</h3><div class="tags"><span class="tag">DBMS</span><span class="tag">Operating Systems</span><span class="tag">OOP</span><span class="tag">Data Structures</span><span class="tag">Troubleshooting</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Selected work</div>
+          <h2 class="section-title">Projects & hands-on learning.</h2>
+          <p class="section-desc">A selection of academic and practical work. Project links can be added once the repositories are published.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project-card">
+            <div class="project-icon" aria-hidden="true">▦</div>
+            <h3>Human Resource Management System</h3>
+            <p>Collaborative academic project. Worked on the Employee module, database connectivity, testing and bug fixing across the application.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">HTML/CSS/JS</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-icon" aria-hidden="true">⌁</div>
+            <h3>AI-Powered Data Analyst Agent</h3>
+            <p>Built an automation workflow concept to process spreadsheet data and connect AI-assisted analysis with Google Sheets and Gmail.</p>
+            <div class="tags"><span class="tag">n8n</span><span class="tag">OpenAI API</span><span class="tag">Google Sheets</span><span class="tag">Gmail</span></div>
+          </article>
+          <article class="project-card">
+            <div class="project-icon" aria-hidden="true">☁</div>
+            <h3>AWS Portfolio Hosting</h3>
+            <p>Hands-on cloud learning focused on preparing a static portfolio for Amazon S3 hosting and understanding bucket permissions and access policies.</p>
+            <div class="tags"><span class="tag">AWS S3</span><span class="tag">IAM</span><span class="tag">GitHub</span><span class="tag">HTML/CSS</span></div>
+          </article>
+        </div>
+        <p class="project-note">Note: Add your actual GitHub repository URLs to each project card when they are ready. This page intentionally avoids placeholder links that lead nowhere.</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Get in touch</div>
+          <h2 class="section-title">Let's connect.</h2>
+          <p class="section-desc">Interested in entry-level cloud support, IT support or technical trainee opportunities. Feel free to reach out.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Contact details</h3>
+            <p>I’m open to connecting with recruiters, professionals and teams working in cloud and IT operations.</p>
+            <div class="contact-list">
+              <div><strong>Email</strong><a href="mailto:shettysharathshetty33@gmail.com">shettysharathshetty33@gmail.com</a></div>
+              <div><strong>Phone</strong><a href="tel:+919353237391">+91 93532 37391</a></div>
+              <div><strong>Location</strong>Bengaluru, Karnataka, India</div>
+              <div><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/sharath-shetty-13003634a/" target="_blank" rel="noopener noreferrer">linkedin.com/in/sharath-shetty-13003634a</a></div>
+            </div>
+          </div>
+          <div class="contact-card">
+            <h3>Send a message</h3>
+            <form id="contactForm">
+              <label>Your name<input id="senderName" name="name" type="text" autocomplete="name" placeholder="Enter your name" required></label>
+              <label>Your email<input id="senderEmail" name="email" type="email" autocomplete="email" placeholder="Enter your email" required></label>
+              <label>Message<textarea id="senderMessage" name="message" placeholder="How can I help?" required></textarea></label>
+              <button class="btn btn-primary" type="submit">Open email app <span aria-hidden="true">↗</span></button>
+              <p class="form-help">This form opens your email application with the message prepared. It does not send or store your information on a server.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Sharath Shetty. Built with HTML, CSS & JavaScript.</span>
+      <a class="top-link" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    navLinks.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('contactForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('senderName').value.trim();
+      const email = document.getElementById('senderEmail').value.trim();
+      const message = document.getElementById('senderMessage').value.trim();
+      const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = 'mailto:shettysharathshetty33@gmail.com?subject=' + subject + '&body=' + body;
+    });
+  </script>
+</body>
+</html>
