@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b1020">
   <meta name="description" content="Sharath Shetty — BCA graduate and aspiring Cloud Support Engineer. Explore skills, projects and contact details.">
-  <title>Sharath Shetty | Cloud & IT Enthusiast</title>
+  <title>| Cloud & IT Enthusiast</title>
   <style>
     :root {
       --bg: #0b1020;
@@ -39,6 +39,49 @@
     .brand span { color: var(--accent); }
     .nav-links { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .92rem; }
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+    .nav-actions { display: flex; align-items: center; }
+    .nav-login-btn { padding: 10px 16px; border-color: rgba(101,214,196,.35); background: rgba(101,214,196,.08); color: var(--text); }
+    .nav-login-btn:hover { border-color: rgba(101,214,196,.6); }
+    .chatbot-launcher {
+      position: fixed; right: 22px; bottom: 22px; z-index: 40; width: 62px; height: 62px; border: none; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #07131b; font-size: 1.7rem; font-weight: 900;
+      box-shadow: 0 18px 40px rgba(72, 153, 171, .35); cursor: pointer; display: grid; place-items: center;
+    }
+    .chatbot-widget {
+      position: fixed; right: 22px; bottom: 98px; width: min(360px, calc(100vw - 24px)); border: 1px solid var(--line);
+      border-radius: 22px; background: rgba(12, 19, 31, .97); box-shadow: 0 26px 60px rgba(0,0,0,.35); overflow: hidden;
+      opacity: 0; transform: translateY(18px) scale(.96); pointer-events: none; transition: .2s ease;
+      z-index: 45;
+    }
+    .chatbot-widget.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .chatbot-header {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line);
+      background: rgba(101,214,196,.08);
+    }
+    .chatbot-header strong { font-size: .96rem; }
+    .chatbot-status { display: flex; align-items: center; gap: 8px; font-size: .76rem; color: var(--muted); }
+    .chatbot-status::before {
+      content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #53d196; box-shadow: 0 0 12px rgba(83,209,150,.8);
+    }
+    .chatbot-close { border: none; background: transparent; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+    .chatbot-body { padding: 14px 14px 10px; max-height: 310px; overflow-y: auto; display: grid; gap: 12px; }
+    .chat-msg { max-width: 82%; padding: 10px 12px; border-radius: 14px; line-height: 1.45; font-size: .9rem; }
+    .chat-msg.bot { background: rgba(255,255,255,.04); border: 1px solid rgba(173,195,230,.12); color: var(--text); justify-self: start; }
+    .chat-msg.user { background: rgba(101,214,196,.12); border: 1px solid rgba(101,214,196,.2); color: #dcfef6; justify-self: end; }
+    .chatbot-quick { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 14px 14px; }
+    .quick-pill {
+      border: 1px solid rgba(173,195,230,.18); background: rgba(255,255,255,.02); color: var(--text); border-radius: 999px;
+      padding: 7px 10px; font-size: .78rem; cursor: pointer;
+    }
+    .chatbot-form { display: flex; gap: 8px; padding: 12px 14px 14px; border-top: 1px solid var(--line); }
+    .chatbot-form input {
+      flex: 1; min-width: 0; border-radius: 12px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: var(--text);
+      padding: 11px 12px; font: inherit;
+    }
+    .chatbot-form button {
+      border: none; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #07131b; font-weight: 800;
+      padding: 0 16px; cursor: pointer;
+    }
     .menu-toggle { display: none; border: 1px solid var(--line); color: var(--text); background: var(--surface); border-radius: 10px; padding: 9px 12px; cursor: pointer; }
     .hero { padding: 104px 0 88px; min-height: 610px; display: grid; align-items: center; }
     .hero-grid { display: grid; grid-template-columns: 1.35fr .85fr; gap: 58px; align-items: center; }
@@ -53,14 +96,49 @@
     .btn:hover { transform: translateY(-2px); }
     .btn-primary { background: var(--accent); color: #07131b; }
     .btn-secondary { border-color: var(--line); background: rgba(255,255,255,.025); color: var(--text); }
+    .modal-backdrop {
+      position: fixed; inset: 0; display: none; place-items: center; padding: 22px; background: rgba(3, 9, 19, .74);
+      backdrop-filter: blur(10px); z-index: 50;
+    }
+    .modal-backdrop.visible { display: grid; }
+    .login-modal {
+      position: relative; width: min(430px, 100%); background: linear-gradient(180deg, rgba(19,29,47,.98), rgba(12,19,31,.98));
+      border: 1px solid var(--line); border-radius: 28px; box-shadow: var(--shadow); padding: 28px 26px 24px;
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line);
+      background: rgba(255,255,255,.04); color: var(--text); font-size: 1.4rem; cursor: pointer;
+    }
+    .login-brand { font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); font-size: .73rem; }
+    .login-modal h3 { margin: 14px 0 8px; font-size: clamp(1.7rem, 3vw, 2.1rem); letter-spacing: -.04em; }
+    .login-modal p { margin: 0 0 18px; color: var(--muted); }
+    .login-form { display: grid; gap: 16px; }
+    .login-form label { display: block; font-size: .82rem; color: #dfeedf; font-weight: 650; }
+    .login-form input[type="text"], .login-form input[type="password"] {
+      width: 100%; margin-top: 7px; padding: 12px 13px; border-radius: 12px; border: 1px solid var(--line);
+      background: rgba(7,15,28,.92); color: var(--text); font: inherit;
+    }
+    .login-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: .78rem; }
+    .checkbox-row { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); }
+    .checkbox-row input { accent-color: var(--accent); }
+    .inline-link { color: var(--accent); }
+    .login-submit { width: 100%; }
+    .login-status { min-height: 22px; margin: 0; color: var(--accent); font-size: .82rem; }
     .hero-card { padding: 30px; border: 1px solid var(--line); border-radius: 28px; background: linear-gradient(145deg, rgba(101,214,196,.12), rgba(125,167,255,.08)), var(--surface); box-shadow: var(--shadow); }
-    .avatar { width: 92px; height: 92px; border-radius: 24px; display: grid; place-items: center; font-size: 2.1rem; font-weight: 850; color: #07131b; background: linear-gradient(135deg, var(--accent), var(--accent-2)); margin-bottom: 22px; }
-    .hero-card h3 { margin: 0 0 5px; font-size: 1.35rem; }
-    .hero-card p { margin: 0; color: var(--muted); }
-    .quick-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
-    .fact { padding: 13px; border-radius: 13px; background: rgba(255,255,255,.045); }
-    .fact strong { display: block; font-size: .92rem; }
-    .fact small { color: var(--muted); }
+    .hero-card {
+      padding: 30px 0 0;
+      border: none; background: transparent; box-shadow: none;
+    }
+    .hero-card h3 { margin: 0 0 12px; font-size: clamp(2.2rem, 4vw, 4.1rem); letter-spacing: -.055em; line-height: .96; }
+    .hero-card p { margin: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.5; }
+    .quick-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+    .fact {
+      padding: 18px 16px; border-radius: 14px; min-height: 92px; background: rgba(255,255,255,.045);
+      border: 1px solid rgba(194, 209, 232, 0.08);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .fact strong { display: block; font-size: 1.04rem; margin-bottom: 6px; }
+    .fact small { color: var(--muted); font-size: .96rem; }
     section { padding: 78px 0; }
     .section-head { max-width: 700px; margin-bottom: 34px; }
     .section-kicker { color: var(--accent); text-transform: uppercase; letter-spacing: .14em; font-weight: 800; font-size: .76rem; }
@@ -129,10 +207,13 @@
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#home">SHARATH<span>.</span></a>
+      <a class="brand" href="#home">SHARATH SHETTY<span>.</span></a>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
       <div class="nav-links" id="navLinks">
         <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-secondary nav-login-btn" type="button" data-open-login>Professional Login</button>
       </div>
     </nav>
   </header>
@@ -143,16 +224,16 @@
         <div>
           <div class="eyebrow">BCA Graduate · Bengaluru, India</div>
           <h1>Hello, I'm<br><span>Sharath Shetty.</span></h1>
-          <h2>Aspiring Cloud Support Engineer</h2>
+          <h2>Cloud & DevOps Enthusiast</h2>
           <p class="lead">I’m a BCA graduate interested in cloud computing, Linux, networking and IT infrastructure. I enjoy learning by building practical projects, troubleshooting issues and exploring how reliable systems are deployed and maintained.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#projects">Explore my work <span aria-hidden="true">↗</span></a>
             <a class="btn btn-secondary" href="#contact">Contact me</a>
+            <button class="btn btn-secondary" type="button" data-open-login>Professional Login</button>
           </div>
         </div>
         <aside class="hero-card" aria-label="Profile summary">
-          <div class="avatar" aria-hidden="true">SS</div>
-          <h3>Cloud & IT Enthusiast</h3>
+          <h3>Cloud & DevOps<br>Enthusiast</h3>
           <p>Focused on building strong foundations in cloud platforms and technical support.</p>
           <div class="quick-facts">
             <div class="fact"><strong>Education</strong><small>BCA · 2026</small></div>
@@ -182,7 +263,7 @@
             <div class="education-line">
               <strong>Bachelor of Computer Applications (BCA)</strong>
               <span>Dr. B.B. Hegde First Grade College, Kundapura · Mangalore University</span><br>
-              <span>2023–2026 · CGPA: 7.76/10</span>
+              <span>2023–2026 · CGPA: 7.73/10</span>
             </div>
             <div class="education-line">
               <strong>Pre-University Course — Commerce</strong>
@@ -275,6 +356,54 @@
     </section>
   </main>
 
+  <div class="modal-backdrop" id="loginModal" aria-hidden="true">
+    <div class="login-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button class="modal-close" type="button" id="closeLogin" aria-label="Close login form">×</button>
+      <div class="login-brand">Secure access</div>
+      <h3 id="loginTitle">Professional Login</h3>
+      <p>Access your portfolio dashboard and manage secure updates.</p>
+      <form class="login-form" id="loginForm">
+        <label>
+          Email or username
+          <input id="loginUser" type="text" placeholder="name@example.com" autocomplete="username" required>
+        </label>
+        <label>
+          Password
+          <input id="loginPassword" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+        </label>
+        <div class="login-row">
+          <label class="checkbox-row"><input type="checkbox"> Remember me</label>
+          <a class="inline-link" href="#contact">Need help?</a>
+        </div>
+        <button class="btn btn-primary login-submit" type="submit">Sign in</button>
+        <p class="login-status" id="loginStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <button class="chatbot-launcher chatbot-toggle" type="button" aria-label="Open chat assistant">✦</button>
+
+  <aside class="chatbot-widget" id="chatbotWidget" aria-live="polite">
+    <div class="chatbot-header">
+      <strong>Portfolio Assistant</strong>
+      <div class="chatbot-status">Online</div>
+      <button class="chatbot-close chatbot-toggle" type="button" aria-label="Close chat assistant">×</button>
+    </div>
+    <div class="chatbot-body" id="chatMessages">
+      <div class="chat-msg bot">Hi! I can help with cloud, DevOps, Linux, and portfolio questions.</div>
+    </div>
+    <div class="chatbot-quick">
+      <button class="quick-pill" type="button">Cloud skills</button>
+      <button class="quick-pill" type="button">Linux</button>
+      <button class="quick-pill" type="button">Projects</button>
+      <button class="quick-pill" type="button">Contact</button>
+    </div>
+    <form class="chatbot-form" id="chatForm">
+      <input id="chatInput" type="text" placeholder="Ask me something..." aria-label="Type your message">
+      <button type="submit">Send</button>
+    </form>
+  </aside>
+
   <footer>
     <div class="container footer-inner">
       <span>© <span id="year"></span> Sharath Shetty. Built with HTML, CSS & JavaScript.</span>
@@ -285,6 +414,39 @@
   <script>
     const menuToggle = document.getElementById('menuToggle');
     const navLinks = document.getElementById('navLinks');
+    const loginModal = document.getElementById('loginModal');
+    const loginStatus = document.getElementById('loginStatus');
+    const chatbotWidget = document.getElementById('chatbotWidget');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatForm = document.getElementById('chatForm');
+    const chatInput = document.getElementById('chatInput');
+
+    const toggleLoginModal = (shouldOpen) => {
+      loginModal.classList.toggle('visible', shouldOpen);
+      loginModal.setAttribute('aria-hidden', String(!shouldOpen));
+      if (shouldOpen) {
+        document.body.style.overflow = 'hidden';
+        document.getElementById('loginUser').focus();
+      } else {
+        document.body.style.overflow = '';
+      }
+    };
+
+    document.querySelectorAll('[data-open-login]').forEach((button) => {
+      button.addEventListener('click', () => toggleLoginModal(true));
+    });
+
+    document.getElementById('closeLogin').addEventListener('click', () => toggleLoginModal(false));
+
+    loginModal.addEventListener('click', (event) => {
+      if (event.target === loginModal) toggleLoginModal(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && loginModal.classList.contains('visible')) {
+        toggleLoginModal(false);
+      }
+    });
 
     menuToggle.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
@@ -300,6 +462,54 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    document.querySelectorAll('.chatbot-toggle').forEach((button) => {
+      button.addEventListener('click', () => {
+        const isOpen = chatbotWidget.classList.toggle('open');
+        if (isOpen) {
+          chatInput.focus();
+        }
+      });
+    });
+
+    const createChatMessage = (text, type = 'bot') => {
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg ' + type;
+      msg.textContent = text;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const getChatReply = (input) => {
+      const text = input.toLowerCase();
+      if (!text.trim()) return 'Please ask me something about cloud, DevOps, Linux, or my projects.';
+      if (text.includes('cloud') || text.includes('aws') || text.includes('skills')) return 'I’m learning AWS fundamentals, Linux, networking, and IT support workflows, with a focus on practical cloud operations.';
+      if (text.includes('devops') || text.includes('docker') || text.includes('ci')) return 'I’m building a strong base in automation, Linux systems, troubleshooting, and deployment concepts relevant to DevOps practices.';
+      if (text.includes('linux') || text.includes('ubuntu') || text.includes('terminal')) return 'Linux is a core area for me, including command-line basics, system administration workflows, and troubleshooting techniques.';
+      if (text.includes('project') || text.includes('work')) return 'My portfolio highlights a human resource management project, an AI-assisted data workflow concept, and a cloud hosting project using AWS S3 fundamentals.';
+      if (text.includes('contact') || text.includes('email') || text.includes('hire')) return 'You can contact me through the contact form or email me at shettysharathshetty33@gmail.com.';
+      if (text.includes('hello') || text.includes('hi')) return 'Hi! I’m here to help with portfolio questions, cloud learning, and DevOps basics.';
+      return 'I can help with cloud, DevOps, Linux, networking, and portfolio questions. Try asking about AWS, Linux, skills, or projects.';
+    };
+
+    chatForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const message = chatInput.value.trim();
+      if (!message) return;
+      createChatMessage(message, 'user');
+      chatInput.value = '';
+      setTimeout(() => {
+        createChatMessage(getChatReply(message), 'bot');
+      }, 350);
+    });
+
+    document.querySelectorAll('.quick-pill').forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const text = pill.textContent.trim();
+        chatInput.value = text;
+        chatForm.dispatchEvent(new Event('submit'));
+      });
+    });
+
     document.getElementById('contactForm').addEventListener('submit', (event) => {
       event.preventDefault();
       const name = document.getElementById('senderName').value.trim();
@@ -308,6 +518,21 @@
       const subject = encodeURIComponent('Portfolio enquiry from ' + name);
       const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
       window.location.href = 'mailto:shettysharathshetty33@gmail.com?subject=' + subject + '&body=' + body;
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const user = document.getElementById('loginUser').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      if (!user || !password) {
+        loginStatus.textContent = 'Please enter both your username and password.';
+        return;
+      }
+
+      loginStatus.textContent = 'Demo access granted. This portfolio login is ready for backend integration.';
+      document.getElementById('loginForm').reset();
+      setTimeout(() => toggleLoginModal(false), 1200);
     });
   </script>
 </body>
